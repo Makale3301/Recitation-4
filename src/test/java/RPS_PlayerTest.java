@@ -33,9 +33,9 @@ class RPS_PlayerTest {
             player2.challenge(player3);
             player3.challenge(player1);
         }
-        assertEquals(2*expected,player1.getNumberOfGamesPlayed());
-        assertEquals(2*expected,player2.getNumberOfGamesPlayed());
-        assertEquals(2*expected,player3.getNumberOfGamesPlayed());
+        assertEquals(2*expected,player1.getNumberOfGamesPlayed(),"Player 1 fail");
+        assertEquals(2*expected,player2.getNumberOfGamesPlayed(),"Player 2 fail");
+        assertEquals(2*expected,player3.getNumberOfGamesPlayed(),"Player 3 fail");
     }
 
     @Test

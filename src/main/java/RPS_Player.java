@@ -6,12 +6,17 @@ public class RPS_Player {
     private int choice;
     private String name;
 
+    Random mk = new Random();
+
     public RPS_Player(String name){
-        // TODO: replace this line with your code.
+        numberOfGamesWon = 0;
+        numberOfGamesPlayed = 0;
+        choice = mk.nextInt(2);
+        this.name = name;
     }
 
     public String getName(){
-        // TODO: replace this line with your code.
+        return name;
     }
 
     /**
@@ -19,7 +24,7 @@ public class RPS_Player {
      * @return returns the number of games played.
      */
     public int getNumberOfGamesPlayed(){
-        // TODO: replace this line with your code.
+       return numberOfGamesPlayed;
     }
 
     /**
@@ -27,7 +32,11 @@ public class RPS_Player {
      * @return returns the number of games won.
      */
     public int getNumberOfGamesWon(){
-        // TODO: replace this line with your code.
+        return numberOfGamesWon;
+    }
+
+    public int getChoice() {
+        return choice;
     }
 
     /**
@@ -35,14 +44,25 @@ public class RPS_Player {
      * @return win percentage as a double.
      */
     public double getWinPercentage(){
-        // TODO: replace this line with your code.
+        if (numberOfGamesWon == 0) return 0.0;
+        return (double) (numberOfGamesWon) / (double) (numberOfGamesPlayed);
     }
+
+    public void addWin(){
+        this.numberOfGamesWon += 1;
+    }
+
+    public void addPlayed(){
+        this.numberOfGamesPlayed += 1;
+    }
+
 
     /**
      * Starts a new game.
      */
     public void clear(){
-        // TODO: replace this line with your code.
+        numberOfGamesPlayed = 0;
+        numberOfGamesWon = 0;
     }
 
     /**
@@ -53,7 +73,35 @@ public class RPS_Player {
      * @return Reference to the RPS_Player that won or a null if there is a draw
      */
     public RPS_Player challenge(RPS_Player anotherPlayer){
-        // TODO: replace this line with your code.
+        if (getChoice() == anotherPlayer.getChoice()) {
+            addPlayed();
+            anotherPlayer.addPlayed();
+            return null;
+        }
+        if (getChoice() == 0 && anotherPlayer.getChoice() == 2){
+            addWin();
+            addPlayed();
+            anotherPlayer.addPlayed();
+            return this;
+        }
+        if (getChoice() == 2 && anotherPlayer.getChoice() == 1) {
+            addWin();
+            addPlayed();
+            anotherPlayer.addPlayed();
+            return this;
+        }
+        if (getChoice() == 1 && anotherPlayer.getChoice() == 0) {
+            addWin();
+            addPlayed();
+            anotherPlayer.addPlayed();
+            return this;
+        }
+        else {
+            anotherPlayer.addPlayed();
+            anotherPlayer.addWin();
+            addPlayed();
+            return anotherPlayer;
+        }
     }
 
     /**
@@ -65,6 +113,7 @@ public class RPS_Player {
      */
     public RPS_Player keepAndChallenge(RPS_Player anotherPlayer){
         // TODO: replace this line with your code.
+        return null;
     }
 
 }
